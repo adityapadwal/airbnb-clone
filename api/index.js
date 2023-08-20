@@ -57,7 +57,6 @@ app.post('/login', async(req, res) => {
 
     const userDoc = await User.findOne({email});
     if(userDoc) {
-        // res.json('User found');
         const passOk = bcrypt.compareSync(password, userDoc.password);
         if(passOk) {
             // creating a json web token
@@ -77,6 +76,11 @@ app.post('/login', async(req, res) => {
     } else {
         res.status(422).json('User not found');
     }
+});
+
+app.post('/logout', (req, res) => {
+    // resetting the cookie
+    res.cookie('token', '').json(true);
 });
 
 app.get('/profile', (req, res) => {
