@@ -1,5 +1,5 @@
 # Ignore node_modules directories
+node_modules
 client/node_modules/
 API/node_modules/
 API/.env/
-node_modules
