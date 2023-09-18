@@ -2,4 +2,4 @@
 client/node_modules/
 API/node_modules/
 API/.env/
-nodemodules
+node_modules
