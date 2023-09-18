@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "image-downloader": "^4.3.0"
+  }
+}

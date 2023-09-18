@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
+const imageDownloader = require('image-downloader');
 
 // Secret key for password encryption
 const bcryptSalt = bcrypt.genSaltSync(10);
@@ -19,10 +20,14 @@ const User = require("./models/User.js");
 // creating an instance of the express application
 const app = express(); 
 
+// Middlewares
 // used to parse the incoming json data from the requests
 app.use(express.json()); 
 
 app.use(cookieParser());
+
+//  configuring an Express.js middleware to serve static files
+app.use('/uploads', express.static(__dirname+'/uploads'));
 
 app.use(cors({
     credentials: true,
@@ -97,6 +102,16 @@ app.get('/profile', (req, res) => {
     } else {
         res.json(null);
     }
+});
+
+app.post('/upload-by-link', async (req, res) => {
+    const {link} = req.body;
+    const newName = 'photo' + Date.now() + '.jpg';
+    await imageDownloader.image({
+        url: link,
+        dest: __dirname + '/uploads/' + newName,
+    });
+    res.json(newName);
 });
 
 app.listen(4000, () => {
