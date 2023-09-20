@@ -82,12 +82,15 @@ export default function PlacesPage() {
                 <div>
                     <form action="">
 
+                        {/* Title */}
                         {preInput('Title', 'title for your place. should be short and catchy as in advertisements')}
                         <input type="text" value={title} onChange={(e) => { setTitle(e.target.value) }} placeholder="title, for example: My lovely apt" />
 
+                        {/* Description */}
                         {preInput('Address', 'address to this place')}
                         <input type="text" value={address} onChange={(e) => { setAddress(e.target.value) }} placeholder='address' />
 
+                        {/* Photos */}
                         {preInput('Photos', 'more = better')}
                         <div className='flex gap-2'>
                             <input type="text" value={photoLink} onChange={(e) => {setPhotoLink(e.target.value)} } placeholder={'add using a link ....jpg'} />
@@ -108,9 +111,11 @@ export default function PlacesPage() {
                             </label>
                         </div>
 
+                        {/* Description */}
                         {preInput('Description', 'description of the place')}
                         <textarea value={description} onChange={(e) => { setDescription(e.target.value) }} cols="30" rows="5"></textarea>
 
+                        {/* Perks */}
                         {preInput('Perks', 'select all the perks of your place')}
                         <div className='grid mt-2 gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-6'>
                             <Perks selected={perks} onChange={setPerks} />
