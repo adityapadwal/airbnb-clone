@@ -18,6 +18,7 @@ const jwtSecret = '1qwertyuiop2asdfghjkl3zxcvbnm';
 
 // Importing all the models
 const User = require("./models/User.js");
+const Place = require("./models/Place.js");
 
 // creating an instance of the express application
 const app = express(); 
@@ -100,7 +101,7 @@ app.get('/profile', (req, res) => {
                 const {name, email, _id} = await User.findById(userData.id);
                 res.json({name, email, _id});
             }
-        })
+        });
     } else {
         res.json(null);
     }
@@ -131,6 +132,31 @@ app.post('/upload', photosMiddleware.array('photos', 100),(req, res) => {
         uploadedFiles.push(newPath.replace('uploads\\', ''));
     }
     res.json(uploadedFiles);
+});
+
+app.post('/places', (req, res) => {
+    const {token} = req.cookies;
+    const {title, address, addedPhotos, description, perks, extraInfo, checkIn, checkOut, maxGuests} = req.body;
+    jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+        if(err) {
+            throw err;
+        } else {
+            const placeDoc = await Place.create({
+                owner: userData.id,
+                title: title,
+                address: address, 
+                photos: addedPhotos,
+                description: description, 
+                perks: perks, 
+                extraInfo: extraInfo, 
+                checkIn: checkIn, 
+                checkOut: checkOut,
+                maxGuests: maxGuests
+            });
+
+            res.json(placeDoc);
+        }
+    });
 });
 
 app.listen(4000, () => {
