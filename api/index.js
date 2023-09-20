@@ -9,6 +9,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const imageDownloader = require('image-downloader');
+const multer = require('multer');
+const fs = require('fs'); // to rename/handle files on the server
 
 // Secret key for password encryption
 const bcryptSalt = bcrypt.genSaltSync(10);
@@ -112,6 +114,23 @@ app.post('/upload-by-link', async (req, res) => {
         dest: __dirname + '/uploads/' + newName,
     });
     res.json(newName);
+});
+
+
+// path contains the path, originalname contains the extension of the photo
+const photosMiddleware = multer({dest: 'uploads/'});
+app.post('/upload', photosMiddleware.array('photos', 100),(req, res) => {
+    const uploadedFiles = [];
+    for(let i=0; i<req.files.length; i++) {
+        console.log(req.files)
+        const {path, originalname} = req.files[i];
+        const parts = originalname.split('.');
+        const extension = parts[parts.length - 1];
+        const newPath = path + '.' + extension;
+        fs.renameSync(path, newPath);
+        uploadedFiles.push(newPath.replace('uploads\\', ''));
+    }
+    res.json(uploadedFiles);
 });
 
 app.listen(4000, () => {
