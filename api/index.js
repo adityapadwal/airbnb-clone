@@ -160,7 +160,7 @@ app.post('/places', (req, res) => {
     });
 });
 
-app.get('/places', (req, res) => {
+app.get('/user-places', (req, res) => {
     const {token} = req.cookies;
     //grabbing the user
     jwt.verify(token, jwtSecret, {}, async (err, userData) => {
@@ -207,6 +207,11 @@ app.put('/places', async(req, res) => {
         }
     });
 });
+
+app.get('/places', async(req, res) => {
+    const allPlaces = await Place.find();
+    res.json(allPlaces);
+})
 
 app.listen(4000, () => {
     console.log("Server is running on port 4000");
