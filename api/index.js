@@ -178,7 +178,7 @@ app.get('/places/:id', async(req, res) => {
     const {id} = req.params;
     const place = await Place.findById(id);
     res.json(place);
-})
+});
 
 app.put('/places', async(req, res) => {
     const {token} = req.cookies;
