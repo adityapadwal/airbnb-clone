@@ -19,6 +19,7 @@ const jwtSecret = '1qwertyuiop2asdfghjkl3zxcvbnm';
 // Importing all the models
 const User = require("./models/User.js");
 const Place = require("./models/Place.js");
+const Booking = require("./models/Booking.js");
 
 // creating an instance of the express application
 const app = express(); 
@@ -160,7 +161,7 @@ app.post('/places', (req, res) => {
     });
 });
 
-app.get('/places', (req, res) => {
+app.get('/user-places', (req, res) => {
     const {token} = req.cookies;
     //grabbing the user
     jwt.verify(token, jwtSecret, {}, async (err, userData) => {
@@ -178,7 +179,7 @@ app.get('/places/:id', async(req, res) => {
     const {id} = req.params;
     const place = await Place.findById(id);
     res.json(place);
-})
+});
 
 app.put('/places', async(req, res) => {
     const {token} = req.cookies;
@@ -205,6 +206,22 @@ app.put('/places', async(req, res) => {
                 res.json('Place Updated');
             }
         }
+    });
+});
+
+app.get('/places', async(req, res) => {
+    const allPlaces = await Place.find();
+    res.json(allPlaces);
+});
+
+app.post('/bookings', (req, res) => {
+    const{place, checkIn, checkOut, numberOfGuests, name, phone, price} = req.body;
+    Booking.create({place, checkIn, checkOut, numberOfGuests, name, phone, price})
+    .then((doc) => {
+        res.json(doc);
+    })
+    .catch((err) => {
+        throw err;
     });
 });
 
