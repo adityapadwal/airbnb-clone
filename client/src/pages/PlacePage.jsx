@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import BookingWidget from './BookingWidget'
 
 export default function PlacePage() {
 
@@ -29,7 +30,7 @@ export default function PlacePage() {
             <div className='absolute inset-0  text-white min-h-screen'>
                 <div className='bg-black p-8 grid gap-4'>
                     <div>
-                        <h2 className='text-3xl'>Photos of {place.title}</h2>
+                        <h2 className='text-3xl mr-48'>Photos of {place.title}</h2>
                         <button onClick={() => setShowAllPhotos(false)} className='fixed right-12 top-8 flex gap-1 py-2 px-4 rounded-2xl shadow shadow-black bg-white text-black'>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
                                 <path fillRule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clipRule="evenodd" />
@@ -48,7 +49,7 @@ export default function PlacePage() {
     }
 
     return (
-        <div className='mt-4 bg-gray-100 -mx-8 px-8 py-8'>
+        <div className='mt-4 bg-gray-100 -mx-8 px-8 pt-8'>
             {/* Title */}
             <h1 className='text-3xl'>{place.title}</h1>
 
@@ -68,17 +69,17 @@ export default function PlacePage() {
                     <div>
                         {place.photos?.[0] && (
                             <div>
-                                <img className='aspect-square object-cover' src={'http://localhost:4000/uploads/' + place.photos[0]} alt="" />
+                                <img onClick={() => setShowAllPhotos(true)} className='cursor-pointer aspect-square object-cover' src={'http://localhost:4000/uploads/' + place.photos[0]} alt="" />
                             </div>
                         )}
                     </div>
                     <div className='grid'>
                         {place.photos?.[1] && (
-                            <img className='aspect-square object-cover' src={'http://localhost:4000/uploads/' + place.photos[1]} alt="" />
+                            <img onClick={() => setShowAllPhotos(true)} className='cursor-pointer aspect-square object-cover' src={'http://localhost:4000/uploads/' + place.photos[1]} alt="" />
                         )}
                         <div className='overflow-hidden'>
                             {place.photos?.[2] && (
-                                <img className='aspect-square object-cover relative top-2' src={'http://localhost:4000/uploads/' + place.photos[2]} alt="" />
+                                <img onClick={() => setShowAllPhotos(true)} className='cursor-pointer aspect-square object-cover relative top-2' src={'http://localhost:4000/uploads/' + place.photos[2]} alt="" />
                             )}
                         </div>
                     </div>
@@ -90,6 +91,37 @@ export default function PlacePage() {
                     Show more photos
                 </button>
             </div>
+
+            {/* Price, checkIn and checkOut */}
+            <div className='mt-8 mb-8 gap-8 grid grid-cols-1 md:grid-cols-[2fr_1fr]'>
+                <div>
+                    {/* Description */}
+                    <div className='my-4'>
+                        <h2 className='font-semibold text-2xl'>Description</h2>
+                        {place.description}
+                    </div>
+                    <b>Check-in: </b>{place.checkIn}
+                    <br />
+                    <b>Check-out: </b>{place.checkOut}
+                    <br />
+                    <b>Max number of guests: </b>{place.maxGuests}
+                </div>
+                <div>
+                    <BookingWidget place={place} />
+                </div>
+            </div>
+
+            {/* Extra info */}
+            <div className="bg-white -mx-8 px-8 py-8 border-t">
+                <div>
+                    <h2 className='font-semibold text-2xl'>Extra info</h2>
+                </div>
+                <div className='mb-4 mt-2 text-sm text-gray-700 leading-5'>
+                    IMPORTANT NOTE: <br />
+                    {place.extraInfo}
+                </div>
+            </div>
+
         </div>
     )
 }
