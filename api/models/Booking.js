@@ -5,6 +5,11 @@ const Schema = mongoose.Schema;
 const BookingSchema = new Schema ({
     place: {
         type: Schema.Types.ObjectId,
+        required: true,
+        ref:'Place'
+    },
+    user: {
+        type: Schema.Types.ObjectId,
         required: true
     },
     checkIn: {
