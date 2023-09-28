@@ -46,6 +46,20 @@ app.get('/test', (req, res) => {
     res.json('Test ok!');
 });
 
+// Getting user data from the token
+function getUserDataFromToken(req) {
+    return new Promise((resolve, reject) => {
+        jwt.verify(req.cookies.token, jwtSecret, {}, async (err, userData) =>{
+            if(err) {
+                throw err;
+            } else {
+                resolve(userData);
+            }
+        });
+    });   
+}
+
+// Routes
 app.post('/register', async (req, res) => {
     const {name, email, password} = req.body;
     try {
@@ -214,15 +228,21 @@ app.get('/places', async(req, res) => {
     res.json(allPlaces);
 });
 
-app.post('/bookings', (req, res) => {
+app.post('/bookings', async(req, res) => {
+    const userData = await getUserDataFromToken(req);
     const{place, checkIn, checkOut, numberOfGuests, name, phone, price} = req.body;
-    Booking.create({place, checkIn, checkOut, numberOfGuests, name, phone, price})
+    Booking.create({place, user: userData.id, checkIn, checkOut, numberOfGuests, name, phone, price})
     .then((doc) => {
         res.json(doc);
     })
     .catch((err) => {
         throw err;
     });
+});
+
+app.get('/bookings', async(req, res) => {
+    const userData = await getUserDataFromToken(req);
+    res.json( await Booking.find({user: userData.id}).populate('place') );
 });
 
 app.listen(4000, () => {
