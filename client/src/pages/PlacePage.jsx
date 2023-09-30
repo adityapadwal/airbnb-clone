@@ -27,13 +27,12 @@ export default function PlacePage() {
     }
 
     return (
-        <div className='mt-4 bg-gray-100 -mx-8 px-8 pt-8'>
+        <div className='mt-4 bg-gray-100 -mx-20 lg:px-20 pt-8'>
             {/* Title */}
             <h1 className='text-3xl'>{place.title}</h1>
 
             {/* Address */}
             <AddressLink>{place.address}</AddressLink>
-
 
             {/* Photos */}
             <PlaceGallery place={place}/>
