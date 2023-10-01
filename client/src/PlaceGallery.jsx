@@ -18,7 +18,7 @@ export default function PlaceGallery({ place }) {
                         </button>
                     </div>
                     {place?.photos?.length > 0 && place.photos.map(photo => (
-                        <div>
+                        <div className='flex justify-center' key={photo}>
                             <img src={"http://localhost:4000/uploads/" + photo} alt="" />
                         </div>
                     ))}
