@@ -35,11 +35,11 @@ app.get('/test', (req, res) => {
 });
 
 // Implementing the above imported routes
-app.use(authRoutes);
-app.use(profileRoutes);
-app.use(uploadRoutes);
-app.use(placeRoutes);
-app.use(bookingRoutes);
+app.use("/api", authRoutes);
+app.use("/api", profileRoutes);
+app.use("/api", uploadRoutes);
+app.use("/api", placeRoutes);
+app.use("/api", bookingRoutes);
 
 // Running the express app
 mongoose
