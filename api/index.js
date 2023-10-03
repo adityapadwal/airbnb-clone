@@ -20,7 +20,6 @@ const app = express();
 // Middlewares
 // used to parse the incoming json data from the requests
 app.use(express.json()); 
-
 app.use(cookieParser());
 
 //  configuring an Express.js middleware to serve static files
@@ -30,10 +29,6 @@ app.use(cors({
     credentials: true,
     origin: 'http://127.0.0.1:5173',
 }));
-
-// mongoDB connection
-mongoose
-  .connect(process.env.MONGO_URL)
 
 app.get('/test', (req, res) => {
     res.json('Test ok!');
@@ -47,6 +42,14 @@ app.use(placeRoutes);
 app.use(bookingRoutes);
 
 // Running the express app
-app.listen(4000, () => {
-    console.log("Server is running on port 4000");
-});
+mongoose
+    .connect(process.env.MONGO_URL)
+    .then((result) => {
+        app.listen(4000);
+    })
+    .then(() => {
+        console.log("Server running on port 4000");
+    })
+    .catch((err) => {
+        console.log(err);
+    });
