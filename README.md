@@ -107,6 +107,34 @@ Expanding authentication options to include Google Mail (OAuth) will provide use
 Integrating the Stripe API for payment processing will ensure a secure and seamless payment experience for users. Supporting multiple payment methods and currencies will broaden the platform's appeal to a global audience and enhance financial transactions.
 
 These planned improvements and future scope elements aim to elevate the Full-stack Bookings Application to new heights. By focusing on mobile responsiveness, enhancing search functionality, incorporating user feedback mechanisms, strengthening communication tools, broadening authentication options, and ensuring smooth payment processing, we are committed to providing users with an even more feature-rich and enjoyable booking experience. Stay tuned for these exciting updates!
+## Screenshots
+
+![Screenshot (94)](https://github.com/adityapadwal/airbnb-clone/assets/97524745/953ccf82-39c0-4553-a173-4db42f3c0ae1)
+
+![Screenshot (95)](https://github.com/adityapadwal/airbnb-clone/assets/97524745/c8690c3d-aefd-4d70-8860-0cb7a7fc0d60)
+
+![Screenshot (96)](https://github.com/adityapadwal/airbnb-clone/assets/97524745/3225f683-dfbe-469d-84f9-a5e69ff30455)
+
+![Screenshot (98)](https://github.com/adityapadwal/airbnb-clone/assets/97524745/a204ffd9-4e93-4910-91c9-eb18c1ccf44a)
+
+![Screenshot (99)](https://github.com/adityapadwal/airbnb-clone/assets/97524745/5a64c2de-d9e4-4882-9bc3-2458bfa70401)
+
+![Screenshot (101)](https://github.com/adityapadwal/airbnb-clone/assets/97524745/aa2d3a85-5e09-41be-8125-3afc3b9d009b)
+
+![Screenshot (102)](https://github.com/adityapadwal/airbnb-clone/assets/97524745/de22a3d2-932a-4e64-8ce4-5fbe02469257)
+
+![Screenshot (103)](https://github.com/adityapadwal/airbnb-clone/assets/97524745/468d761b-1365-4b1e-8230-61079962b584)
+
+![Screenshot (104)](https://github.com/adityapadwal/airbnb-clone/assets/97524745/11ab1ec9-098b-4de3-ab9f-682e50eaa673)
+
+![Screenshot (106)](https://github.com/adityapadwal/airbnb-clone/assets/97524745/42904711-e0f9-41f9-a6b1-2a821e5ee5bc)
+
+![Screenshot (107)](https://github.com/adityapadwal/airbnb-clone/assets/97524745/72d92ad5-04cb-44a6-99ed-8f16b363daa3)
+
+![Screenshot (108)](https://github.com/adityapadwal/airbnb-clone/assets/97524745/4db379be-91d7-4779-a56b-7f16dad31006)
+
+![Screenshot (109)](https://github.com/adityapadwal/airbnb-clone/assets/97524745/e7086c2c-a3bb-4456-8766-d87c2bcbad0b)
+
 ## Contributing
 
 Contributions to this project are highly appreciated! If you have any ideas for new features, find any issues, or want to improve the existing functionality, please feel free to create a pull request. Working together, we can make this Full-stack Bookings Apllication even better!
@@ -117,4 +145,3 @@ Please adhere to this project's `code of conduct`.
 
 If you have any feedback, please reach out to us at aditya.padwal3102@gmail.com
 Thank you for your interest. We hope you find it useful and we look forward to your contributions!
-
